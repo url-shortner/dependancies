@@ -21,6 +21,11 @@ spec:
           image: elasticsearch:7.16.2
           ports:
             - containerPort: 9200
+          env:
+            - name: discovery.type
+              value: single-node
+            - name: ES_JAVA_OPTS
+              value: "-Xmx256m -Xms256m"
 ---
 apiVersion: v1
 kind: Service
@@ -37,3 +42,4 @@ spec:
     - protocol: TCP
       port: 9200
       targetPort: 9200
+   
